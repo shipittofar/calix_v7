@@ -1,0 +1,1425 @@
+/* Component styles that are clearer as CSS than as utility strings.
+   Colours come only from the five palette tokens. */
+
+@layer components {
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-ivory);
+    border-bottom: 1px solid var(--color-travertine);
+  }
+
+  .nav-link {
+    text-decoration: none;
+    padding-block: 8px;
+  }
+
+  .nav-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+
+  .mobile-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-menu[open] summary {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+
+  .mobile-menu__panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--header-h);
+    background: var(--color-ivory);
+    border-bottom: 1px solid var(--color-espresso);
+  }
+
+  /* ---------- Service index ---------- */
+  .service-index a {
+    display: grid;
+    gap: 2px;
+    padding-block: 14px;
+    text-decoration: none;
+  }
+
+  .service-index a:hover .service-index__name {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+
+  @media (min-width: 768px) {
+    .service-index a {
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 16px;
+    }
+  }
+
+  /* ---------- Plates ---------- */
+  .plate__field {
+    background: var(--surface-plate);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .plate__field {
+      padding: 48px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .plate--lead .plate__field {
+      padding: 64px;
+    }
+  }
+
+  .plate__caption {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  @media (min-width: 768px) {
+    .plate__caption {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+    }
+  }
+
+  .annotation {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .annotation__leader {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--color-espresso);
+    flex: none;
+  }
+
+  .drawing {
+    font-family: var(--font-text);
+    color: var(--color-espresso);
+  }
+
+  .specimen {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    /* Never stretch as a grid or flex item: the scroll sequence measures its width. */
+    width: max-content;
+    justify-self: start;
+    align-self: start;
+  }
+
+  .specimen--large {
+    font-size: clamp(30px, 4vw, 56px);
+  }
+
+  .specimen--small {
+    font-size: 12px;
+  }
+
+  .bar {
+    display: block;
+    height: 8px;
+    background: var(--color-espresso);
+  }
+
+  .bar--heading {
+    height: 10px;
+    width: 80%;
+  }
+
+  .bar--short {
+    width: 55%;
+  }
+
+  .bar--text {
+    height: 4px;
+    width: 65%;
+    background: var(--color-olive);
+  }
+
+  .bar--cta {
+    height: 12px;
+    width: 34%;
+    background: var(--color-olive);
+  }
+
+  .bar--field {
+    height: 10px;
+    width: 100%;
+    background: var(--color-ivory);
+    border: 1px solid var(--color-olive);
+  }
+
+  /* Identity */
+  .drawing--identity {
+    position: relative;
+    display: grid;
+    gap: 24px;
+    padding: 32px 16px 24px;
+    background-color: var(--color-ivory);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M0 .5H32M.5 0V32' stroke='%23D9C9A8' fill='none'/%3E%3C/svg%3E");
+  }
+
+  .identity__dimension {
+    border-top: 1px solid var(--color-olive);
+    margin-inline: 12%;
+    text-align: center;
+  }
+
+  .identity__dimension span {
+    position: relative;
+    top: -10px;
+    background: var(--color-ivory);
+    padding-inline: 8px;
+  }
+
+  .identity__mark {
+    justify-self: center;
+    padding: 28px 36px;
+    outline: 1px solid var(--color-olive);
+    background: var(--color-ivory);
+  }
+
+  .identity__swatches {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .swatch {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--color-espresso);
+  }
+
+  .identity__note {
+    justify-self: start;
+    background: var(--color-ivory);
+    padding-right: 8px;
+  }
+
+  /* Device */
+  .drawing--device {
+    position: relative;
+    padding-bottom: 40px;
+  }
+
+  .browser {
+    background: var(--color-ivory);
+    border: 1px solid var(--color-espresso);
+    display: none;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .browser {
+      display: block;
+      width: 84%;
+    }
+  }
+
+  .browser__bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding-inline: 10px;
+    border-bottom: 1px solid var(--color-espresso);
+  }
+
+  .browser__bar i {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--color-espresso);
+  }
+
+  .browser__address {
+    margin-left: 12px;
+    height: 14px;
+    flex: 0 1 220px;
+    border: 1px solid var(--color-travertine);
+  }
+
+  .page-sketch {
+    min-width: 0;
+    display: grid;
+    gap: 20px;
+    padding: 16px 20px 24px;
+  }
+
+  .page-sketch__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .page-sketch__links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .page-sketch__links i {
+    width: 28px;
+    height: 3px;
+    background: var(--color-espresso);
+  }
+
+  .page-sketch__hero {
+    display: grid;
+    gap: 10px;
+    padding-block: 12px;
+  }
+
+  .page-sketch__hero .bar--cta {
+    margin-top: 6px;
+  }
+
+  .page-sketch__media {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+  }
+
+  .page-sketch__media i {
+    min-width: 0;
+    aspect-ratio: 16 / 9;
+    background: var(--color-travertine);
+  }
+
+  .page-sketch--compact .page-sketch__media {
+    grid-template-columns: 1fr;
+  }
+
+  .page-sketch--compact .page-sketch__media i {
+    aspect-ratio: 4 / 3;
+  }
+
+  .phone {
+    width: min(220px, 70%);
+    margin-inline: auto;
+    aspect-ratio: 9 / 18;
+    background: var(--color-ivory);
+    border: 1px solid var(--color-espresso);
+    padding: 6px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .phone {
+      position: absolute;
+      right: 0;
+      bottom: 40px;
+      width: 26%;
+      margin: 0;
+    }
+  }
+
+  .device__note {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  /* System */
+  .drawing--system {
+    display: grid;
+    gap: 12px;
+  }
+
+  .system__row {
+    display: grid;
+    gap: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .system__row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .system__node {
+    display: grid;
+    gap: 6px;
+    padding: 16px;
+    background: var(--color-ivory);
+    border: 1px solid var(--color-espresso);
+  }
+
+  .system__title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  .system__base {
+    padding: 12px 16px;
+    border: 1px solid var(--color-olive);
+    background: var(--color-ivory);
+  }
+
+  /* Formats */
+  .drawing--formats {
+    display: grid;
+    gap: 24px;
+  }
+
+  .formats__row {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 0.5625fr;
+    gap: 12px;
+    align-items: end;
+  }
+
+  .format-cell {
+    display: grid;
+    gap: 8px;
+  }
+
+  .format {
+    display: grid;
+    align-content: space-between;
+    gap: 10px;
+    padding: 12px;
+    background: var(--color-ivory);
+    border: 1px solid var(--color-espresso);
+  }
+
+  .format--square {
+    aspect-ratio: 1;
+  }
+
+  .format--portrait {
+    aspect-ratio: 4 / 5;
+  }
+
+  .format--story {
+    aspect-ratio: 9 / 16;
+  }
+
+  .format--banner {
+    align-content: center;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    aspect-ratio: 728 / 90;
+    padding-block: 0;
+  }
+
+  .format--banner .bar--heading {
+    width: 70%;
+  }
+
+  .format--banner .bar--cta {
+    width: 56px;
+  }
+
+  /* Answer anatomy */
+  .drawing--answer {
+    background: var(--color-ivory);
+    border: 1px solid var(--color-espresso);
+    padding: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .drawing--answer {
+      padding: 28px;
+    }
+  }
+
+  .answer__query {
+    border: 1px solid var(--color-espresso);
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  .answer__result {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-travertine);
+    display: grid;
+    gap: 6px;
+  }
+
+  .answer__title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .answer__definition {
+    font-size: 15px;
+  }
+
+  .answer__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .answer__tags span {
+    border: 1px solid var(--color-olive);
+    color: var(--color-olive);
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Journey */
+  .journey__row {
+    display: grid;
+    gap: 16px;
+    counter-reset: none;
+  }
+
+  @media (min-width: 768px) {
+    .journey__row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
+
+  .journey__step {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 16px;
+    background: var(--color-ivory);
+    border: 1px solid var(--color-espresso);
+  }
+
+  .journey__step--goal {
+    border-width: 2px;
+  }
+
+  .journey__title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    line-height: 1.15;
+  }
+
+  .journey__form {
+    display: grid;
+    gap: 6px;
+  }
+
+  /* Hairline connectors between steps */
+  .journey__step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    background: var(--color-espresso);
+    left: 50%;
+    bottom: -17px;
+    width: 1px;
+    height: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .journey__step:not(:last-child)::after {
+      left: auto;
+      right: -13px;
+      top: 50%;
+      bottom: auto;
+      width: 12px;
+      height: 1px;
+    }
+  }
+
+  /* ---------- Process steps (on Espresso) ---------- */
+  .process-step {
+    border-top: 1px solid var(--color-gold);
+    padding-top: 20px;
+  }
+
+  .process-step__n {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 33px + 0.76vw, 44px);
+    line-height: 1;
+    color: var(--color-gold);
+    font-variant-numeric: lining-nums;
+  }
+
+  /* ---------- Forms ---------- */
+  .field label,
+  .field legend {
+    display: block;
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .field__help {
+    display: block;
+    font-size: 14px;
+    color: var(--color-olive);
+    margin-top: 2px;
+  }
+
+  .input {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--color-ivory);
+    color: var(--color-espresso);
+    border: 1px solid var(--color-olive);
+    font: inherit;
+    font-size: 17px;
+  }
+
+  textarea.input {
+    min-height: 160px;
+    resize: vertical;
+  }
+
+  select.input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232E1E14' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+
+  .input[aria-invalid="true"] {
+    border-color: var(--color-espresso);
+    border-left-width: 4px;
+  }
+
+  .field__error {
+    display: block;
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  /* label.choice outranks `.field label { display: block }` inside the services fieldset. */
+  label.choice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    cursor: pointer;
+  }
+
+  .choice input {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-olive);
+    flex: none;
+  }
+
+  .error-summary {
+    border: 1px solid var(--color-espresso);
+    border-left-width: 4px;
+    padding: 20px 24px;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* ---------- Problem drawing (stage 0) ---------- */
+  .drawing--problem {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .fragment {
+    display: grid;
+    gap: 6px;
+    padding: 12px 16px;
+    background: var(--color-ivory);
+    border: 1px solid var(--color-espresso);
+  }
+
+  .fragment--2 { margin-top: 18px; }
+  .fragment--3 { margin-left: 8%; }
+  .fragment--4 { margin-top: -6px; }
+  .fragment--5 { margin-top: 22px; margin-right: 6%; }
+
+  @media (min-width: 768px) {
+    .drawing--problem {
+      position: relative;
+      display: block;
+      min-height: 340px;
+    }
+
+    .fragment {
+      position: absolute;
+      transition: transform 600ms var(--ease-out), opacity 400ms var(--ease-out);
+    }
+
+    .fragment--1 { left: 4%; top: 6%; }
+    .fragment--2 { right: 2%; top: 0; margin: 0; }
+    .fragment--3 { left: 34%; top: 42%; margin: 0; }
+    .fragment--4 { left: 0; bottom: 4%; margin: 0; }
+    .fragment--5 { right: 8%; bottom: 10%; margin: 0; }
+  }
+
+  /* Five suppliers, five different settings of one name. */
+  .specimen--variant-canonical { font-size: 15px; }
+  .specimen--variant-caps { font-family: var(--font-text); font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; font-size: 13px; }
+  .specimen--variant-light { font-family: var(--font-text); font-weight: 400; letter-spacing: 0; font-size: 15px; }
+  .specimen--variant-plain { font-weight: 500; letter-spacing: 0; font-size: 18px; }
+  .specimen--variant-spaced { font-family: var(--font-text); text-transform: lowercase; letter-spacing: 0.3em; font-size: 11px; }
+
+  /* ---------- Scroll sequence: static layout (default, mobile, reduced motion, no JS) ---------- */
+  .sequence {
+    border-top: 1px solid var(--color-travertine);
+  }
+
+  .stage {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    padding-block: 96px;
+  }
+
+  .stage__text,
+  .stage__plate-static {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .stage__plate-static {
+    margin-top: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .stage {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .stage {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      padding-block: 128px;
+    }
+
+    .stage__text {
+      grid-column: 1 / span 5;
+    }
+
+    .stage__plate-static {
+      grid-column: 7 / -1;
+      grid-row: 1;
+      margin-top: 0;
+    }
+  }
+
+  .sequence__plate {
+    display: none;
+  }
+
+  .sequence__close {
+    padding-bottom: 96px;
+  }
+
+  .sequence__close-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    margin-top: 16px;
+    font-weight: 500;
+  }
+
+  /* ---------- Scroll sequence: enhanced (html[data-motion="on"]) ---------- */
+  html[data-motion="on"] .sequence {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+
+  html[data-motion="on"] .sequence__stages {
+    grid-column: 1 / span 5;
+    grid-row: 1;
+  }
+
+  html[data-motion="on"] .stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 72vh;
+    padding-block: 64px;
+  }
+
+  html[data-motion="on"] .stage__plate-static {
+    display: none;
+  }
+
+  .stage__support {
+    display: none;
+  }
+
+  html[data-motion="on"] .stage__support {
+    display: block;
+    margin-top: 48px;
+  }
+
+  html[data-motion="on"] .sequence__close {
+    padding-top: 32px;
+    padding-bottom: 128px;
+  }
+
+  html[data-motion="on"] .sequence__plate {
+    display: flex;
+    flex-direction: column;
+    grid-column: 7 / -1;
+    grid-row: 1;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--header-h) + 32px);
+    height: min(calc(100svh - var(--header-h) - 64px), 760px);
+    margin-top: 64px;
+  }
+
+  .sequence__rail {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 12px;
+    font-size: 14px;
+    color: var(--color-olive);
+  }
+
+  .sequence__rail a {
+    display: inline-block;
+    padding-block: 6px;
+    text-decoration: none;
+    transition: color var(--dur-micro) var(--ease-out);
+  }
+
+  .sequence__rail a:hover {
+    color: var(--color-espresso);
+    text-decoration: underline;
+    text-underline-offset: 8px;
+  }
+
+  .sequence__rail a.is-active {
+    color: var(--color-espresso);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
+  }
+
+  .sequence__field {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    background: var(--color-travertine);
+    overflow: hidden;
+  }
+
+  .sequence__layer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 400ms var(--ease-out),
+      visibility 0s linear 400ms;
+  }
+
+  .sequence__layer > .drawing {
+    width: 100%;
+  }
+
+  .sequence__layer.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 600ms var(--ease-out) 150ms,
+      visibility 0s;
+  }
+
+  /* The travelling mark stands in for each drawing's own specimen. */
+  .sequence__plate.is-ready .sequence__layer [data-specimen-anchor] {
+    visibility: hidden;
+  }
+
+  .sequence__traveller {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    font-size: clamp(30px, 4vw, 56px);
+    line-height: 1;
+    transform-origin: 0 0;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+      transform 800ms var(--ease-out),
+      opacity 300ms var(--ease-out);
+    will-change: transform;
+  }
+
+  .sequence__traveller.is-placed {
+    opacity: 1;
+  }
+
+  .sequence__traveller.is-instant {
+    transition: opacity 300ms var(--ease-out);
+  }
+
+  /* Problem → Brand: the pieces converge as the single mark takes over. */
+  .sequence__layer:not(.is-active) .fragment--1 { transform: translate(120px, 90px) scale(0.6); }
+  .sequence__layer:not(.is-active) .fragment--2 { transform: translate(-130px, 100px) scale(0.6); }
+  .sequence__layer:not(.is-active) .fragment--3 { transform: scale(0.6); }
+  .sequence__layer:not(.is-active) .fragment--4 { transform: translate(130px, -100px) scale(0.6); }
+  .sequence__layer:not(.is-active) .fragment--5 { transform: translate(-120px, -90px) scale(0.6); }
+
+  /* Each drawing is drawn in as its stage becomes active: frames, formats and steps
+     are revealed with clip-path in reading order. */
+  .sequence__layer .browser,
+  .sequence__layer .journey__step,
+  .sequence__layer .format,
+  .sequence__layer .answer__result {
+    transition: clip-path 700ms var(--ease-out);
+  }
+
+  .sequence__layer:not(.is-active) .browser,
+  .sequence__layer:not(.is-active) .journey__step {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .sequence__layer:not(.is-active) .format,
+  .sequence__layer:not(.is-active) .answer__result,
+  .sequence__layer:not(.is-active) .phone {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  .sequence__layer.is-active .browser,
+  .sequence__layer.is-active .format,
+  .sequence__layer.is-active .answer__result,
+  .sequence__layer.is-active .journey__step,
+  .sequence__layer.is-active .phone {
+    clip-path: inset(0);
+  }
+
+  .sequence__layer .phone {
+    transition: clip-path 700ms var(--ease-out) 300ms;
+  }
+
+  .sequence__layer.is-active .format-cell:nth-child(2) .format,
+  .sequence__layer.is-active .journey__step:nth-child(2) { transition-delay: 120ms; }
+  .sequence__layer.is-active .format-cell:nth-child(3) .format,
+  .sequence__layer.is-active .journey__step:nth-child(3) { transition-delay: 240ms; }
+  .sequence__layer.is-active .drawing--formats > .format-cell .format,
+  .sequence__layer.is-active .journey__step:nth-child(4) { transition-delay: 360ms; }
+  .sequence__layer.is-active .answer__result { transition-delay: 200ms; }
+
+  .sequence__layer .annotation__leader {
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 800ms var(--ease-out) 400ms;
+  }
+
+  .sequence__layer.is-active .annotation__leader {
+    transform: scaleX(1);
+  }
+
+  .sequence__caption {
+    position: relative;
+    min-height: 56px;
+    margin-top: 16px;
+    border-top: 1px solid var(--color-espresso);
+  }
+
+  .sequence__caption-item {
+    position: absolute;
+    inset: 12px 0 auto 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    opacity: 0;
+    transition: opacity 300ms var(--ease-out);
+  }
+
+  .sequence__caption-item.is-active {
+    opacity: 1;
+    transition-delay: 200ms;
+  }
+}
+
+/* ---------- S3: annotations resolve (CSS scroll-driven; no JavaScript) ---------- */
+@keyframes calix-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes calix-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .stage__plate-static .annotation__leader {
+      transform-origin: left center;
+      animation: calix-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+
+    .stage__plate-static .annotation__text {
+      animation: calix-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 50% entry 100%;
+    }
+  }
+}
+
+/* ---------- Olive story (components/home/story) ---------- */
+@layer components {
+  /* Static layout: default, reduced motion, short viewports, no JavaScript. */
+  .story {
+    border-top: 1px solid var(--color-travertine);
+  }
+
+  .story__intro {
+    padding-block: 96px 56px;
+  }
+
+  .story__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    margin-top: 24px;
+  }
+
+  .story__meta a {
+    font-weight: 500;
+  }
+
+  .story__stage {
+    width: 100%;
+    max-width: calc(var(--content-max) + 2 * var(--margin));
+    margin-inline: auto;
+    padding-inline: var(--margin);
+  }
+
+  .story__stages {
+    display: grid;
+    gap: 80px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .story__beat {
+    display: grid;
+    gap: 24px;
+  }
+
+  .story__shots {
+    display: grid;
+    gap: 12px;
+  }
+
+  .story__shot {
+    margin: 0;
+  }
+
+  .story__frame {
+    position: relative;
+    aspect-ratio: 2752 / 1536;
+    overflow: hidden;
+    background: var(--color-travertine);
+  }
+
+  .story__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Stage 4: the sprout layer, at its place in the soil plate (left, top and width set inline). */
+  .story__sprout {
+    position: absolute;
+    height: auto;
+    pointer-events: none;
+  }
+
+  .story__caption {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    max-width: 30rem;
+  }
+
+  .story__label {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .story__num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    line-height: 1;
+    color: var(--color-gold);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .story__title {
+    font-size: clamp(24px, 21px + 0.6vw, 30px);
+    line-height: 1.15;
+  }
+
+  .story__disciplines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .story__disciplines li {
+    padding-left: 10px;
+    border-left: 1px solid var(--color-gold);
+  }
+
+  .story__systems {
+    display: grid;
+    gap: 10px;
+    margin: 6px 0 0;
+  }
+
+  .story__systems > div {
+    padding-top: 10px;
+    border-top: 1px solid var(--color-travertine);
+  }
+
+  .story__systems dt {
+    font-weight: 500;
+  }
+
+  .story__systems abbr {
+    text-decoration: none;
+  }
+
+  .story__systems dd {
+    margin: 2px 0 0;
+  }
+
+  .story__progress {
+    display: none;
+  }
+
+  .story__bridge {
+    padding-block: 96px;
+  }
+
+  @media (min-width: 1200px) {
+    .story__beat {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--gutter);
+      align-items: end;
+    }
+
+    .story__shots {
+      grid-column: 1 / span 8;
+    }
+
+    .story__caption {
+      grid-column: 10 / -1;
+    }
+  }
+
+  /* The steps of each stage, listed in the static layout. */
+  .story__steps {
+    margin: 6px 0 0;
+    padding-left: 1.4em;
+    columns: 2 14rem;
+    column-gap: 24px;
+    color: var(--color-olive);
+  }
+
+  .story__steps li {
+    break-inside: avoid;
+    padding-block: 2px;
+  }
+
+  .story__now,
+  .story__window {
+    display: none;
+  }
+
+  /*
+   * Enhanced: one pinned stage (html[data-story="on"]). The drawing fills it on a canvas; the
+   * chapter's photograph sits in a window (--win-*) and the caption in a panel (--panel-*), both set
+   * by StoryPlayer. The track is long on purpose: a wheel notch moves the story about half a step.
+   */
+  html[data-story="on"] .story__track {
+    --unit: 64svh;
+    position: relative;
+    height: calc(100svh + var(--story-length) * var(--unit));
+  }
+
+  @media (min-width: 768px) {
+    html[data-story="on"] .story__track {
+      --unit: 70svh;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    html[data-story="on"] .story__track {
+      --unit: 72svh;
+    }
+  }
+
+  html[data-story="on"] .story__stage {
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100svh - var(--header-h));
+    max-width: none;
+    padding: 0;
+    overflow: hidden;
+    background: var(--color-ivory);
+  }
+
+  /* Placed over the drawing's area by StoryPlayer (the rest of the stage is the Ivory background). */
+  html[data-story="on"] .story__canvas {
+    position: absolute;
+    left: var(--draw-x, 0);
+    top: var(--draw-y, 0);
+    width: var(--draw-w, 100%);
+    height: var(--draw-h, 100%);
+  }
+
+  html[data-story="on"] .story__stages,
+  html[data-story="on"] .story__beat {
+    position: absolute;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* The photograph window. */
+  html[data-story="on"] .story__shots,
+  html[data-story="on"] .story__shot {
+    position: absolute;
+    display: block;
+    left: var(--win-x, 0);
+    top: var(--win-y, 0);
+    width: var(--win-w, 0);
+    height: var(--win-h, 0);
+    overflow: hidden;
+  }
+
+  html[data-story="on"] .story__shot {
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  /* Not laid out, so not fetched, until the reader is near (StoryPlayer adds is-near). */
+  html[data-story="on"] .story__shot:not(.is-near) {
+    display: none;
+  }
+
+  /* Sized and moved by StoryPlayer: centred in the window, then translated and scaled. */
+  html[data-story="on"] .story__frame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    background: none;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+
+  html[data-story="on"] .story__caption {
+    position: absolute;
+    left: var(--panel-x, 0);
+    top: var(--panel-y, 0);
+    width: var(--panel-w, 100%);
+    max-height: var(--panel-h, 100%);
+    overflow: hidden;
+    gap: 8px;
+    padding: 4px 0 0;
+    background: var(--color-ivory);
+    color: var(--color-espresso);
+    pointer-events: auto;
+    z-index: 5;
+  }
+
+  html[data-story="on"] .story__beat:not([data-beat="0"]) .story__caption {
+    opacity: 0;
+  }
+
+  /* The final reveal (StoryPlayer): once the aerial photograph fills the stage, a solid Espresso
+     band rises from its bottom edge and the last caption sits on it as Ivory text, cut to its label,
+     title and current step. No panel is left over the photograph. */
+  html[data-story="on"] .story__band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    display: block;
+    height: 0;
+    background: var(--color-espresso);
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  html[data-story="on"] .story__caption[data-overlay] {
+    background: transparent;
+    color: var(--color-ivory);
+  }
+
+  html[data-story="on"] .story__caption[data-overlay] :is(.story__title, .story__now, .type-label, .type-small) {
+    color: inherit;
+  }
+
+  html[data-story="on"] .story__caption[data-overlay] > .type-small:not(.story__now) {
+    display: none;
+  }
+
+  /* Captions that are faded out stay readable to assistive technology but not clickable. */
+  html[data-story="on"] .story__caption:not([data-current]) {
+    pointer-events: none;
+  }
+
+  /* The current step, named under the chapter text. */
+  html[data-story="on"] .story__now {
+    display: block;
+    margin: 4px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-gold);
+    font-family: var(--font-display);
+    font-size: 21px;
+    line-height: 1.25;
+    color: var(--color-espresso);
+  }
+
+  html[data-story="on"] .story__steps {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  html[data-story="on"] .story__disciplines li {
+    color: var(--color-olive);
+    border-left-color: var(--color-travertine);
+  }
+
+  html[data-story="on"] .story__disciplines li[data-active] {
+    color: var(--color-espresso);
+    border-left-color: var(--color-gold);
+  }
+
+  html[data-story="on"] .story__progress {
+    display: block;
+    z-index: 6;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+  }
+
+  html[data-story="on"] .story__progress-rule {
+    display: block;
+    height: 100%;
+    background: var(--color-gold);
+    transform-origin: left center;
+    transform: scaleX(0);
+    will-change: transform;
+  }
+
+  html[data-story="on"] .story__tick {
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    height: 9px;
+    background: var(--color-espresso);
+  }
+
+  /* Portrait screens: the CMS/CRM definitions don't fit under the drawing, so they stay in the
+     page for assistive technology (and in the static layout) but aren't drawn in the panel. */
+  @media (orientation: portrait) {
+    html[data-story="on"] .story__systems {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+  }
+
+  /* Phones: compact caption so the drawing keeps the middle of the stage. */
+  @media (max-width: 767px) {
+    html[data-story="on"] .story__caption {
+      gap: 4px;
+    }
+
+    html[data-story="on"] .story__caption .type-small {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    html[data-story="on"] .story__title {
+      font-size: 21px;
+    }
+
+    html[data-story="on"] .story__num {
+      font-size: 24px;
+    }
+
+    html[data-story="on"] .story__now {
+      font-size: 18px;
+      padding-top: 6px;
+    }
+
+    html[data-story="on"] .story__caption > .type-small:not(.story__now),
+    html[data-story="on"] .story__disciplines {
+      display: none;
+    }
+  }
+}

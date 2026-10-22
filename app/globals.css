@@ -1,0 +1,389 @@
+@import "tailwindcss" source(none);
+
+/* Scan only source folders, so words in docs/ never generate utilities. */
+@source "../app";
+@source "../components";
+@source "../content";
+
+/*
+ * CALIX design tokens. Source of truth: docs/design-system.md.
+ * Only the five palette colours exist. Default Tailwind colours, radii and
+ * shadows are removed so off-brand utilities cannot be used by accident.
+ */
+@theme {
+  --color-*: initial;
+  --color-espresso: #2E1E14;
+  --color-ivory: #F6F1E8;
+  --color-travertine: #D9C9A8;
+  --color-gold: #B08D57;
+  --color-olive: #4B5236;
+
+  --font-*: initial;
+  --font-display: var(--font-cormorant), Garamond, "Times New Roman", serif;
+  --font-text: var(--font-jost), Futura, "Helvetica Neue", Arial, sans-serif;
+
+  --radius-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+
+  --breakpoint-*: initial;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1600px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --margin: clamp(20px, 5vw, 72px);
+  --gutter: clamp(16px, 1.7vw, 24px);
+  --content-max: 1456px;
+  --header-h: 64px;
+
+  /* Semantic roles */
+  --surface-page: var(--color-ivory);
+  --surface-plate: var(--color-travertine);
+  --text-primary: var(--color-espresso);
+  --text-secondary: var(--color-olive);
+  --rule-strong: var(--color-espresso);
+  --rule-subtle: var(--color-travertine);
+  --focus-ring: var(--color-espresso);
+
+  --dur-micro: 200ms;
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --header-h: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-micro: 0ms;
+  }
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    scroll-padding-top: calc(var(--header-h) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font-text);
+    font-size: 17px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 1200px) {
+    body {
+      font-size: 18px;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(40px, 25.1px + 3.81vw, 80px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+
+  h2 {
+    font-size: clamp(34px, 24.3px + 2.48vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: clamp(26px, 23px + 0.76vw, 34px);
+    line-height: 1.15;
+  }
+
+  h4 {
+    font-size: clamp(21px, 19.9px + 0.29vw, 24px);
+    line-height: 1.25;
+    font-weight: 600;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-travertine);
+    color: var(--color-espresso);
+  }
+
+  ::placeholder {
+    color: var(--color-olive);
+    opacity: 1;
+  }
+}
+
+/* ---------- Layout ---------- */
+@layer components {
+  .container-calix {
+    width: 100%;
+    max-width: calc(var(--content-max) + 2 * var(--margin));
+    margin-inline: auto;
+    padding-inline: var(--margin);
+  }
+
+  .grid-calix {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+
+  @media (min-width: 768px) {
+    .grid-calix {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .grid-calix {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+
+  .section-pad {
+    padding-block: 96px;
+  }
+
+  @media (min-width: 1200px) {
+    .section-pad {
+      padding-block: 128px;
+    }
+  }
+
+  /* Surfaces that invert text and focus colours */
+  .surface-inverse {
+    background: var(--color-espresso);
+    color: var(--color-ivory);
+    --text-primary: var(--color-ivory);
+    --text-secondary: var(--color-travertine);
+    --rule-strong: var(--color-gold);
+    --rule-subtle: var(--color-gold);
+    --focus-ring: var(--color-ivory);
+  }
+
+  .surface-action {
+    background: var(--color-olive);
+    color: var(--color-ivory);
+    --text-primary: var(--color-ivory);
+    --text-secondary: var(--color-ivory);
+    --rule-strong: var(--color-ivory);
+    --rule-subtle: var(--color-ivory);
+    --focus-ring: var(--color-ivory);
+  }
+
+  /* ---------- Type roles ---------- */
+  .type-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(48px, 24.2px + 6.1vw, 112px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .type-lead {
+    font-size: clamp(19px, 18.3px + 0.19vw, 21px);
+    line-height: 1.55;
+  }
+
+  .type-small {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .type-annotation {
+    font-size: 13px;
+    line-height: 1.35;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Uppercase labels are reserved for plate captions and buttons. */
+  .type-label {
+    font-family: var(--font-text);
+    font-size: 12px;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .measure {
+    max-width: 38rem;
+  }
+
+  /* ---------- Buttons and links ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding-inline: 28px;
+    font-family: var(--font-text);
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      background-color var(--dur-micro) var(--ease-out),
+      color var(--dur-micro) var(--ease-out),
+      border-color var(--dur-micro) var(--ease-out);
+  }
+
+  .btn-primary {
+    background: var(--color-olive);
+    color: var(--color-ivory);
+    border-color: var(--color-olive);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-espresso);
+    border-color: var(--color-espresso);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--text-primary);
+    color: var(--color-ivory);
+  }
+
+  .surface-inverse .btn-secondary:hover {
+    color: var(--color-espresso);
+  }
+
+  .surface-action .btn-primary {
+    background: var(--color-ivory);
+    color: var(--color-olive);
+    border-color: var(--color-ivory);
+  }
+
+  .surface-action .btn-primary:hover {
+    background: var(--color-espresso);
+    color: var(--color-ivory);
+    border-color: var(--color-espresso);
+  }
+
+  .btn-compact {
+    min-height: 44px;
+    padding-inline: 12px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .btn-compact {
+      padding-inline: 16px;
+      letter-spacing: 0.14em;
+    }
+  }
+
+  .link {
+    text-decoration-line: underline;
+    text-underline-offset: 6px;
+  }
+
+  /* ---------- Hairline lists ---------- */
+  .rule-list {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .rule-list > li {
+    border-bottom: 1px solid var(--rule-subtle);
+  }
+
+  /* ---------- Pending content (clearly identified placeholders) ---------- */
+  .pending {
+    border-bottom: 1px dashed currentColor;
+    font-style: normal;
+    cursor: help;
+  }
+
+  .placeholder-block {
+    border: 1px dashed var(--color-olive);
+    padding: 32px;
+  }
+
+  .surface-inverse .placeholder-block {
+    border-color: var(--color-travertine);
+  }
+
+  /* ---------- Skip link ---------- */
+  .skip-link {
+    position: absolute;
+    left: var(--margin);
+    top: -100px;
+    z-index: 100;
+    background: var(--color-espresso);
+    color: var(--color-ivory);
+    padding: 12px 20px;
+  }
+
+  .skip-link:focus {
+    top: 12px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}

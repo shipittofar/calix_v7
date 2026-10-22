@@ -1,0 +1,23 @@
+# Lint, type-check and build both ways on every push and pull request.
+# The public build swaps the olive story for an empty stand-in, so it can't be the only check:
+# `typecheck` covers every story file, `check:story` guards next.config.ts and the wiring, and
+# `verify:builds` builds the public site (no story, indexable) and the story preview (story,
+# noindex, written to .next-preview). See docs/olive-story.md §6.
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+      - run: npm run verify:builds
